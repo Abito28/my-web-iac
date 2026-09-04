@@ -1,0 +1,10 @@
+#Terraformの自動生成フォルダ・ロックファイル
+.terraform/
+.terraform.lock.hcl
+
+#state ファイル
+*.tfstate
+*.tfstate.backup
+
+#log ファイル
+*.log
