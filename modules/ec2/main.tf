@@ -16,6 +16,7 @@ data "aws_ami" "amazon_linux" {
 resource "aws_security_group" "my_security_group" {
   name        = "my-security-group"
   description = "Allow HTTP and HTTPS access"
+  vpc_id = var.vpc_id
 
   ingress {
     from_port   = 80
@@ -45,6 +46,7 @@ resource "aws_instance" "my_ec2_instance" {
   subnet_id              = var.public_subnet_id
   vpc_security_group_ids = [aws_security_group.my_security_group.id]
   iam_instance_profile   = aws_iam_instance_profile.ssm_instance_profile.name
+  associate_public_ip_address = true
 
   tags = {
     Name = "wordpress-server"
